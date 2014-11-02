@@ -94,6 +94,6 @@
   }
 
   function randomFrom(a, b) {
-    return a + Math.floor((b - a) * Math.random());
+    return a + (Math.floor((b - a) * Math.random() * 100)/100);
   }
 })(window);
