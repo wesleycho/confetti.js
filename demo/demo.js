@@ -10,7 +10,7 @@ var particles = _.range(0, Confetti.DEFAULT_NUM).map(function () {
     r: Confetti.randomFrom(5, 30),
     tilt: Confetti.randomFrom(-10, 0),
     tiltAngle: 0,
-    tiltAngleIncrement: Confetti.randomFrom(0.05, 0.12)
+    tiltAngleIncrement: Confetti.randomFrom(0.05, 0.12, true)
   });
 });
 
