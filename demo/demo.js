@@ -3,6 +3,14 @@ var canvas = Confetti.createCanvas(
   document.querySelector('canvas')
 );
 
+var config = {
+  angle: 0.01,
+  tiltAngle: 0.1,
+  draw: draw,
+  updatePosition: updatePosition,
+  updateState: updateState
+};
+
 var particles = _.range(0, Confetti.DEFAULT_NUM).map(function () {
   return Confetti.create({
     x: Confetti.randomFrom(0, canvas.width),
@@ -14,13 +22,7 @@ var particles = _.range(0, Confetti.DEFAULT_NUM).map(function () {
   });
 });
 
-canvas.step(particles, {
-  angle: 0.01,
-  tiltAngle: 0.1,
-  draw: draw,
-  updatePosition: updatePosition,
-  updateState: updateState
-})();
+canvas.step(particles, config)();
 
 function draw(confetti) {
   canvas.context.beginPath();
@@ -33,7 +35,7 @@ function draw(confetti) {
   canvas.context.stroke();
 }
 
-function updatePosition(confetti, idx, config) {
+function updatePosition(confetti, idx) {
   confetti.tiltAngle += confetti.tiltAngleIncrement;
   confetti.y += (Math.cos(config.angle + confetti.d) + 1 + confetti.r / 2) / 2;
   confetti.x += Math.sin(config.angle);
