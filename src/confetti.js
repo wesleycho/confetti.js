@@ -93,7 +93,10 @@
       randomFrom(0, 256) + ', ' + Math.random() + ')';
   }
 
-  function randomFrom(a, b) {
-    return a + Math.floor((b - a) * Math.random());
+  function randomFrom(a, b, factor) {
+    if (!factor) {
+      factor = 1;
+    }
+    return a + (Math.floor((b - a) * Math.random() * factor) / factor);
   }
 })(window);

@@ -21,7 +21,7 @@ Need a festive celebration on your page?  Confetti.js gives you the ability to c
 
 -  `Confetti.DEFAULT_NUM`: Default number of confetti pieces to assume - default value is 500
 -  `Confetti.color()`: A helper function for randomly generating an rgba color using the `Math.random` function
--  `Confetti.randomFrom(a, b)`: A helper function which takes two numbers and returns a random number from a to b, not including b
+-  `Confetti.randomFrom(a, b, factor)`: A helper function which takes two numbers and returns a random number from a to b, not including b.  If factor is present, it is equivalent to `Math.floor(Math.random() * (b - a) * factor) / factor`.
 -  `Confetti.createCanvas(element, canvas)`:
   Takes two arguments, the DOM node for the canvas to base its dimensions off of (or an object with `offsetWidth` & `offsetHeight` keys), and the canvas DOM node.
   Returns a `Canvas` instance, which has properties:

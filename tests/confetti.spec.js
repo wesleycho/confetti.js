@@ -66,6 +66,19 @@ describe('Confetti', function () {
     expect(Confetti.randomFrom(0, 5)).toMatch(/[0-4]/);
   });
 
+  it('should return a random number up to two decimal places', function () {
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+    expect(Confetti.randomFrom(0, 1, 100)).toMatch(/^0\.[0-9]{1,2}|0$/);
+  });
+
   it('should create a canvas instance', function () {
     var canvas = Confetti.createCanvas(parentElem, canvasElem);
 
