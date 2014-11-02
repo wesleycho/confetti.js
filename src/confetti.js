@@ -93,7 +93,9 @@
       randomFrom(0, 256) + ', ' + Math.random() + ')';
   }
 
-  function randomFrom(a, b) {
-    return a + (Math.floor((b - a) * Math.random() * 100)/100);
+  function randomFrom(a, b, floatOk) {
+    var retVal;
+    retVal = a + (Math.floor((b - a) * Math.random() * 100)/100);
+    return floatOk ? retVal : parseInt(retVal);
   }
 })(window);
