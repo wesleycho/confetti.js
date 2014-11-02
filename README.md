@@ -1,4 +1,4 @@
-# Confetti.js
+# Confetti.js [![Build Status](https://travis-ci.org/wesleycho/confetti.js.svg?branch=master)](https://travis-ci.org/wesleycho/confetti.js)
 
 A library to meet your confetti needs.
 
