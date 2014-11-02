@@ -2,6 +2,10 @@
 
 A library to meet your confetti needs.
 
+## Example
+
+Check out [this plunker](http://plnkr.co/edit/JeFlnHmj6gjo4NG3Do75?p=preview) for a live example of this library.
+
 ## About
 
 Need a festive celebration on your page?  Confetti.js gives you the ability to control the confetti on your canvas tag with animation functions of your choosing for each piece of confetti while avoiding having to do the messy recursive logic of animating and garbage collecting.
