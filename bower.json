@@ -1,0 +1,22 @@
+{
+  "name": "confetti.js",
+  "version": "0.0.1",
+  "description": "Abstractions for creating confetti using canvas",
+  "main": "src/confetti.js",
+  "keywords": [
+    "confetti",
+    "confetti.js"
+  ],
+  "authors": [
+    "Wesley Cho <wesley.cho@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "curly": true,
+  "immed": true,
+  "latedef": "nofunc",
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "boss": true,
+  "eqnull": true,
+  "quotmark": "single",
+  "trailing": true,
+  "validthis": true,
+  "strict": false,
+  "globalstrict": true,
+  "globals": {
+    "Confetti": true,
+    "window": true,
+    "jasmine": true,
+    "ddescribe": true,
+    "describe": true,
+    "it": true,
+    "iit": true,
+    "xit": true,
+    "expect": true,
+    "module": true,
+    "inject": true,
+    "beforeEach": true,
+    "require": true,
+    "spyOn": true
+  }
+}
