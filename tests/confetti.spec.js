@@ -20,6 +20,7 @@ describe('Confetti', function () {
       DEFAULT_NUM: 500,
       color: jasmine.any(Function),
       randomFrom: jasmine.any(Function),
+      animate: jasmine.any(Function),
       createCanvas: jasmine.any(Function),
       create: jasmine.any(Function)
     });
@@ -176,8 +177,8 @@ describe('Confetti', function () {
         tiltAngleIncrement: Confetti.randomFrom(0.05, 0.12)
       });
       particles = [confetti, confetti];
-      window._requestAnimationFrame = window.requestAnimationFrame;
-      window.requestAnimationFrame = jasmine.createSpy('window.requestAnimationFrame');
+      Confetti._animate = Confetti.animate;
+      Confetti.animate = jasmine.createSpy('Confetti.animate');
 
       canvas.context.clearRect = jasmine.createSpy('canvas.context.clearRect');
       canvas.context.stroke = jasmine.createSpy('canvas.context.stroke');
@@ -193,14 +194,14 @@ describe('Confetti', function () {
     });
 
     afterEach(function () {
-      window.requestAnimationFrame = window._requestAnimationFrame;
+      Confetti.animate = Confetti._animate;
       delete canvas.context.clearRect;
     });
 
     it('should call itself recursively and update', function () {
       step();
 
-      expect(window.requestAnimationFrame).toHaveBeenCalled();
+      expect(Confetti.animate).toHaveBeenCalled();
       expect(canvas.context.clearRect)
         .toHaveBeenCalledWith(0, 0, canvas.width, canvas.height);
       expect(config.draw).toHaveBeenCalledWith(confetti, 0);
@@ -215,7 +216,7 @@ describe('Confetti', function () {
 
       step();
 
-      expect(window.requestAnimationFrame).not.toHaveBeenCalled();
+      expect(Confetti.animate).not.toHaveBeenCalled();
       expect(canvas.context.clearRect).not.toHaveBeenCalled();
       expect(config.draw).not.toHaveBeenCalled();
       expect(config.updatePosition).not.toHaveBeenCalled();
@@ -227,7 +228,7 @@ describe('Confetti', function () {
 
       step();
 
-      expect(window.requestAnimationFrame).toHaveBeenCalled();
+      expect(Confetti.animate).toHaveBeenCalled();
       expect(canvas.context.clearRect)
         .toHaveBeenCalledWith(0, 0, canvas.width, canvas.height);
       expect(config.draw).toHaveBeenCalledWith(confetti, 0);
@@ -245,7 +246,7 @@ describe('Confetti', function () {
 
       step();
 
-      expect(window.requestAnimationFrame).toHaveBeenCalled();
+      expect(Confetti.animate).toHaveBeenCalled();
       expect(canvas.context.clearRect)
         .toHaveBeenCalledWith(0, 0, canvas.width, canvas.height);
       expect(config.draw).toHaveBeenCalledWith(confetti, 0);

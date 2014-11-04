@@ -4,14 +4,12 @@
   'use strict';
 
   var DEFAULT_NUM_CONFETTI = 500,
-    animate = function () {
-      return window.requestAnimationFrame ||
+    animate = window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         function (cb) {
           setTimeout(callback, 1000 / 60);
         };
-    };
 
   function Canvas(element, canvas) {
     this.element = element;
@@ -33,7 +31,6 @@
       if (canvas.halt) {
         return;
       }
-      animate()(canvas.step(particles, config));
       var context = canvas.context;
       context.clearRect(0, 0, canvas.width, canvas.height);
       if (config.updateState) {
@@ -46,6 +43,7 @@
       if (config.batch) {
         context[(config.fill) ? 'fill' : 'stroke']();
       }
+      global.Confetti.animate(canvas.step(particles, config));
     };
   };
 
@@ -75,6 +73,7 @@
     DEFAULT_NUM: DEFAULT_NUM_CONFETTI,
     color: color,
     randomFrom: randomFrom,
+    animate: animate,
     createCanvas: function (element, canvas) {
       var newCanvas = new Canvas(element, canvas);
       window.addEventListener('resize', newCanvas.setDimensions);
