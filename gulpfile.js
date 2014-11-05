@@ -34,6 +34,7 @@ gulp.task('karma', function (done) {
 gulp.task('bump:patch', function () {
   return gulp.src(['./bower.json', './package.json'])
     .pipe(bump({ type: 'patch' }))
+    .pipe(gulp.dest('./'))
     .on('error', function (err) { throw err; });
 });
 
