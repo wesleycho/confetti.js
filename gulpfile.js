@@ -45,6 +45,7 @@ gulp.task('commit', function (done) {
       'git tag -am v<%= file.version %> "v<%= file.version %>"',
       'git push --all'
     ]))
+    .pipe(gulp.dest('./'))
     .on('error', function (err) { throw err; });
 });
 
