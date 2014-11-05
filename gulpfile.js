@@ -42,11 +42,17 @@ gulp.task('commit', function () {
   var version = require('./package.json').version;
   return gulp.src('package.json')
     .pipe(shell([
-      'git commit -am "v' + version + '"',
-      'git tag -am v' + version + ' "v' + version + '"',
+      'git commit -am "v<%= version %>"',
+      'git tag -am v<%= version %> "v<%= version %>"',
       'git push',
       'git push --tags'
-    ]))
+    ], {
+      templateData: {
+        version: function () {
+          return version;
+        }
+      }
+    }))
     .pipe(gulp.dest('./'))
     .on('error', function (err) { throw err; });
 });
