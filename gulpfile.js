@@ -38,11 +38,12 @@ gulp.task('bump:patch', function () {
     .on('error', function (err) { throw err; });
 });
 
-gulp.task('commit', function (done) {
-  return gulp.src('./package.json')
-    .pipe(shell([
-      'git commit -am "v<%= file.version %>"',
-      'git tag -am v<%= file.version %> "v<%= file.version %>"',
+gulp.task('commit', function () {
+  var version = require('./package.json').version;
+  return gulp.src('package.json')
+    .pipe(shell.task([
+      'git commit -am "v' + version + '"',
+      'git tag -am v' + version + ' "v' + version + '"',
       'git push --all'
     ]))
     .pipe(gulp.dest('./'))
