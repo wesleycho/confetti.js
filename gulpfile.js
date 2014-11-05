@@ -41,7 +41,7 @@ gulp.task('bump:patch', function () {
 gulp.task('commit', function () {
   var version = require('./package.json').version;
   return gulp.src('package.json')
-    .pipe(shell.task([
+    .pipe(shell([
       'git commit -am "v' + version + '"',
       'git tag -am v' + version + ' "v' + version + '"',
       'git push --all'
