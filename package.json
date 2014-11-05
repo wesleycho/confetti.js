@@ -1,6 +1,6 @@
 {
   "name": "confetti.js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Abstractions for creating confetti using canvas",
   "main": "src/confetti.js",
   "scripts": {
