@@ -1,8 +1,11 @@
 var gulp = require('gulp'),
+  bump = require('gulp-bump'),
+  shell = require('gulp-shell'),
   jshint = require('gulp-jshint'),
   stylish = require('jshint-stylish'),
   karma = require('karma').server,
-  lazypipe = require('lazypipe');
+  lazypipe = require('lazypipe'),
+  runSequence = require('run-sequence');
 
 var testFiles = [
   'src/confetti.js',
@@ -26,6 +29,25 @@ gulp.task('karma', function (done) {
     autoWatch: false,
     browsers: ['Firefox']
   }, done);
+});
+
+gulp.task('bump:patch', function () {
+  return gulp.src(['./bower.json', './package.json'])
+    .pipe(bump({ type: 'patch' }))
+    .on('error', function (err) { throw err; });
+});
+
+gulp.task('commit', function () {
+  var version = require('./package.json').version;
+  return shell.task([
+    'git commit -am "v' + version + '"',
+    'git tag -am v' + version + ' "v' + version + '"',
+    'git push --all'
+  ])();
+});
+
+gulp.task('release:patch', function (done) {
+  runSequence('test', 'bump:patch', 'commit', done);
 });
 
 gulp.task('test', ['jshint', 'karma']);

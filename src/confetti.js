@@ -73,7 +73,7 @@
     DEFAULT_NUM: DEFAULT_NUM_CONFETTI,
     color: color,
     randomFrom: randomFrom,
-    animate: animate,
+    animate: animate.bind(global),
     createCanvas: function (element, canvas) {
       var newCanvas = new Canvas(element, canvas);
       window.addEventListener('resize', newCanvas.setDimensions);
