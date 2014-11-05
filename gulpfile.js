@@ -44,7 +44,8 @@ gulp.task('commit', function () {
     .pipe(shell([
       'git commit -am "v' + version + '"',
       'git tag -am v' + version + ' "v' + version + '"',
-      'git push --all'
+      'git push',
+      'git push --tags'
     ]))
     .pipe(gulp.dest('./'))
     .on('error', function (err) { throw err; });
