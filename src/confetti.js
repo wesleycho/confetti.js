@@ -4,9 +4,9 @@
   'use strict';
 
   var DEFAULT_NUM_CONFETTI = 500,
-    animate = window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
+    animate = global.requestAnimationFrame ||
+        global.webkitRequestAnimationFrame ||
+        global.mozRequestAnimationFrame ||
         function (cb) {
           setTimeout(callback, 1000 / 60);
         };
@@ -49,7 +49,7 @@
 
   Canvas.prototype.destroy = function () {
     var canvas = this;
-    window.removeEventListener('resize', canvas.setDimensions);
+    global.removeEventListener('resize', canvas.setDimensions);
     canvas.halt = true;
   };
 
@@ -76,7 +76,7 @@
     animate: animate.bind(global),
     createCanvas: function (element, canvas) {
       var newCanvas = new Canvas(element, canvas);
-      window.addEventListener('resize', newCanvas.setDimensions);
+      global.addEventListener('resize', newCanvas.setDimensions);
       newCanvas.setDimensions();
 
       return newCanvas;
