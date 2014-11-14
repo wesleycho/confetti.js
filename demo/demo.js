@@ -14,7 +14,7 @@ var config = {
 var particles = _.range(0, Confetti.DEFAULT_NUM).map(function () {
   return Confetti.create({
     x: Confetti.randomFrom(0, canvas.width),
-    y: Confetti.randomFrom(0, canvas.height),
+    y: 0,
     r: Confetti.randomFrom(5, 30),
     tilt: Confetti.randomFrom(-10, 0),
     tiltAngle: 0,
