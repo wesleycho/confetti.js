@@ -254,5 +254,23 @@ describe('Confetti', function () {
         .toHaveBeenCalledWith(confetti, 0);
       expect(canvas.context.fill.calls.count()).toBe(1);
     });
+
+    it('should halt the animation if the parent element does not exist', function () {
+      spyOn(canvas, 'destroy');
+      parentElem.parentNode.removeChild(parentElem);
+
+      canvas.setDimensions();
+
+      expect(canvas.destroy).toHaveBeenCalled();
+    });
+
+    it('should halt the animation if the canvas element does not exist', function () {
+      spyOn(canvas, 'destroy');
+      parentElem.removeChild(canvasElem);
+
+      canvas.setDimensions();
+
+      expect(canvas.destroy).toHaveBeenCalled();
+    });
   });
 });

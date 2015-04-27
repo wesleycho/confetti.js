@@ -20,7 +20,7 @@
   }
 
   Canvas.prototype.setDimensions = function () {
-    if (!this.element) {
+    if (!document.contains(this.element) || !document.contains(this.canvas)) {
       this.destroy();
       return;
     }
@@ -59,8 +59,9 @@
   };
 
   function ConfettiClass(config) {
+    var that = this;
     Object.keys(config).forEach(function (prop) {
-      this[prop] = config[prop];
+      that[prop] = config[prop];
     });
     if (!config.d) {
       this.d = randomFrom(10, DEFAULT_NUM_CONFETTI + 10);
