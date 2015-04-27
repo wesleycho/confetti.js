@@ -1,15 +1,15 @@
 // Based off of http://stackoverflow.com/questions/16322869/trying-to-create-a-confetti-effect-in-html5-how-do-i-get-a-different-fill-color
 // and http://codepen.io/linrock/pen/Amdhr
-(function (global) {
+;(function (global) {
   'use strict';
 
   var DEFAULT_NUM_CONFETTI = 500,
     animate = global.requestAnimationFrame ||
-        global.webkitRequestAnimationFrame ||
-        global.mozRequestAnimationFrame ||
-        function (cb) {
-          setTimeout(callback, 1000 / 60);
-        };
+      global.webkitRequestAnimationFrame ||
+      global.mozRequestAnimationFrame ||
+      function (cb) {
+        setTimeout(callback, 1000 / 60);
+      };
 
   function Canvas(element, canvas) {
     this.element = element;
@@ -17,13 +17,18 @@
     this.context = canvas.getContext('2d');
     this.width = element.offsetWidth;
     this.height = element.offsetHeight;
-    this.setDimensions = function () {
-      this.width = this.element.offsetWidth;
-      this.height = this.element.offsetHeight;
-      this.canvas.width = this.width;
-      this.canvas.height = this.height;
-    };
   }
+
+  Canvas.prototype.setDimensions = function () {
+    if (!this.element) {
+      this.destroy();
+      return;
+    }
+    this.width = this.element.offsetWidth;
+    this.height = this.element.offsetHeight;
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+  };
 
   Canvas.prototype.step = function (particles, config) {
     var canvas = this;
@@ -54,9 +59,9 @@
   };
 
   function ConfettiClass(config) {
-    for (var prop in config) {
+    Object.keys(config).forEach(function (prop) {
       this[prop] = config[prop];
-    }
+    });
     if (!config.d) {
       this.d = randomFrom(10, DEFAULT_NUM_CONFETTI + 10);
     }
