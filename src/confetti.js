@@ -54,7 +54,7 @@
 
   Canvas.prototype.destroy = function () {
     var canvas = this;
-    global.removeEventListener('resize', canvas.setDimensions.bind(canvas));
+    global.removeEventListener('resize', canvas.setDimensions);
     canvas.halt = true;
   };
 
@@ -82,7 +82,7 @@
     animate: animate.bind(global),
     createCanvas: function (element, canvas) {
       var newCanvas = new Canvas(element, canvas);
-      global.addEventListener('resize', newCanvas.setDimensions);
+      global.addEventListener('resize', newCanvas.setDimensions.bind(newCanvas));
       newCanvas.setDimensions();
 
       return newCanvas;
