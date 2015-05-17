@@ -54,7 +54,7 @@
 
   Canvas.prototype.destroy = function () {
     var canvas = this;
-    global.removeEventListener('resize', canvas.setDimensions);
+    global.removeEventListener('resize', canvas.setDimensions.bind(canvas));
     canvas.halt = true;
   };
 
