@@ -20,7 +20,7 @@
   }
 
   Canvas.prototype.setDimensions = function () {
-    if (!document.contains(this.element) || !document.contains(this.canvas)) {
+    if (!document.body.contains(this.element) || !document.body.contains(this.canvas)) {
       this.destroy();
       return;
     }
